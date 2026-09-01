@@ -23,36 +23,40 @@ const App = {
   charts: {}
 };
 
-const Storage = {
-  prefix: 'oneclick_',
-  save(key, data) {
-    localStorage.setItem(this.prefix + key, JSON.stringify(data));
-  },
-  load(key) {
-    const data = localStorage.getItem(this.prefix + key);
-    return data ? JSON.parse(data) : null;
-  },
-  saveAll() {
-    for (let key in App.data) {
-      this.save(key, App.data[key]);
-    }
-  },
-  loadAll() {
-    for (let key in App.data) {
-      const saved = this.load(key);
-      if (saved) {
-        App.data[key] = saved;
-      }
-    }
-  },
-  clear() {
-    for (let key in App.data) {
-      localStorage.removeItem(this.prefix + key);
-    }
-  }
+
+// ==========================================
+// CONFIGURAÇÃO FIREBASE (NUVEM)
+// ==========================================
+const firebaseConfig = {
+  apiKey: "AIzaSyDGw1M4-zeWMjVq1_6uF1dNIRnkYBsKAqc",
+  authDomain: "controle-oneclick.firebaseapp.com",
+  projectId: "controle-oneclick",
+  storageBucket: "controle-oneclick.firebasestorage.app",
+  messagingSenderId: "880922280039",
+  appId: "1:880922280039:web:b26bc1e0bfcff10a4654c2"
 };
 
-const Utils = {
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+
+// ==========================================
+// STORAGE ENGINE (Substituído para Firestore)
+// ==========================================
+const Storage = {
+  prefix: 'oneclick_',
+  save(key, data) {},
+  load(key) { return null; },
+  saveAll() {
+    db.collection('oneclick').doc('basededados').set(App.data)
+      .catch(error => console.error("Erro ao salvar no Firebase: ", error));
+  },
+  loadAll() {},
+  clear() {}
+};
+
+  const Utils = {
   generateId(prefix = 'ID') {
     return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 5)}`.toUpperCase();
   },
@@ -417,20 +421,36 @@ function openScannerModal() {
 }
 
 function initApp() {
-  App.data.minas = [{ id: 'MINA-CAUE', nome: 'Mina Cauê', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }, { id: 'MINA-CONCEICAO', nome: 'Mina Conceição', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }, { id: 'MINA-PERIQUITO', nome: 'Mina Periquito', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }]; Storage.save('minas', App.data.minas);
-  Storage.loadAll();
-  if (!App.data.usuarios || App.data.usuarios.length === 0) seedData();
-  
-  const savedUser = localStorage.getItem('oneclick_current_user');
-  if (savedUser) {
-    App.currentUser = JSON.parse(savedUser);
-    renderApp();
-  } else {
-    renderLogin();
-  }
-}
+    // Escuta mudanças no Firebase em tempo real
+    db.collection('oneclick').doc('basededados').onSnapshot((doc) => {
+        if (doc.exists) {
+            App.data = doc.data();
+            console.log("Sincronizado com a nuvem!");
+            if (App.currentUser && document.getElementById('main-content-area')) {
+                Router.navigate(App.currentPage);
+            }
+        } else {
+            console.log("Banco de dados vazio. Gerando dados iniciais...");
+            seedData();
+            App.data.minas = [
+                { id: 'MINA-CAUE', nome: 'Mina Cauê', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
+                { id: 'MINA-CONCEICAO', nome: 'Mina Conceição', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
+                { id: 'MINA-PERIQUITO', nome: 'Mina Periquito', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }
+            ];
+            Storage.saveAll();
+        }
+    });
 
-function renderApp() {
+    const savedUser = localStorage.getItem('oneclick_current_user');
+    if (savedUser) {
+      App.currentUser = JSON.parse(savedUser);
+      renderApp();
+    } else {
+      renderLogin();
+    }
+  }
+  
+  function renderApp() {
   document.getElementById('app').innerHTML = getAppLayout();
   Router.init();
   AlertEngine.verificar();
