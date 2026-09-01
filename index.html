@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONECLICK - Controle de Materiais</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS (Gerado pelo subagente A) -->
+    <link rel="stylesheet" href="_part1_styles.css">
+    <style>
+        /* Fallback básico caso o CSS não carregue */
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #f1f5f9; color: #1e293b; }
+        * { box-sizing: border-box; }
+        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: white; padding: 16px 20px; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-left: 4px solid #10b981; display: flex; align-items: center; gap: 12px; animation: slideIn 0.3s ease; }
+        .toast-error { border-color: #ef4444; }
+        .toast-warning { border-color: #f59e0b; }
+        .toast-info { border-color: #3b82f6; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <!-- Container raiz da aplicação -->
+    <div id="app"></div>
+
+    <!-- Scripts JavaScript do Sistema -->
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Partes da Aplicação -->
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    
+    <script src="_part2_core.js"></script>
+    <script src="_part3_dashboard_modulos.js"></script>
+    <script src="_part4_modulos_features.js"></script>
+    
+    <!-- Inicialização -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa a aplicação
+            window.initApp();
+        });
+    </script>
+</body>
+</html>
