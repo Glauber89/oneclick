@@ -382,6 +382,7 @@ function getAppLayout() {
           </div>
         </main>
       </div>
+      <div id="modal-container"></div>
     `;
   }
   
