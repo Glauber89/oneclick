@@ -332,7 +332,7 @@ function getAppLayout() {
             <a href="#celulares" class="nav-item"><i class="fas fa-mobile-alt"></i> Celulares</a>
             <a href="#veiculos" class="nav-item"><i class="fas fa-car"></i> Veículos</a>
             <a href="#bodycams" class="nav-item"><i class="fas fa-video"></i> Bodycams</a>
-            <a href="#lanternas" class="nav-item"><i class="fas fa-flashlight"></i> Lanternas</a>
+            <a href="#lanternas" class="nav-item"><i class="fas fa-lightbulb"></i> Lanternas</a>
             <a href="#tonfas" class="nav-item"><i class="fas fa-gavel"></i> Tonfas</a>
             <a href="#smartbadges" class="nav-item"><i class="fas fa-id-badge"></i> Smartbadges</a>
             <a href="#radios" class="nav-item"><i class="fas fa-walkie-talkie"></i> Rádios HT</a>
