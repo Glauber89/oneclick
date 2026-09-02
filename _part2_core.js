@@ -413,7 +413,61 @@ function getAppLayout() {
     `;
   }
   
-  // Expose globally
+  
+
+  function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      if(sidebar) sidebar.classList.toggle('open');
+  }
+
+  function openScannerModal() {
+      Utils.showToast("Leitor de QR Code / Código de barras acionado", "info");
+  }
+
+  function initApp() {
+      // Escuta mudanças no Firebase em tempo real
+      if (typeof db !== 'undefined') {
+          db.collection('oneclick').doc('basededados').onSnapshot((doc) => {
+              if (doc.exists) {
+                  App.data = Object.assign(App.data, doc.data());
+                  console.log("Sincronizado com a nuvem!");
+                  if (App.currentUser && document.getElementById('main-content-area')) {
+                      Router.navigate(App.currentPage);
+                  }
+              } else {
+                  console.log("Banco de dados vazio. Gerando dados iniciais...");
+                  if (typeof seedData === 'function') seedData();
+                  App.data.minas = [
+                      { id: 'MINA-CAUE', nome: 'Mina Cauê', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
+                      { id: 'MINA-CONCEICAO', nome: 'Mina Conceição', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
+                      { id: 'MINA-PERIQUITO', nome: 'Mina Periquito', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }
+                  ];
+                  Storage.saveAll();
+              }
+          });
+      }
+
+      const savedUser = localStorage.getItem('oneclick_current_user');
+      if (savedUser) {
+          App.currentUser = JSON.parse(savedUser);
+          renderApp();
+      } else {
+          renderLogin();
+      }
+  }
+
+
+function renderApp() {
+  document.getElementById('app').innerHTML = getAppLayout();
+  Router.init();
+  if (typeof AlertEngine !== 'undefined') AlertEngine.verificar();
+}
+
+function renderLogin() {
+  document.getElementById('app').innerHTML = getLoginLayout();
+}
+
+// Expose globally
 window.initApp = initApp;
 window.Auth = Auth;
 window.Utils = Utils;
