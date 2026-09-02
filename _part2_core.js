@@ -14,6 +14,7 @@ const App = {
     bodycams: [],
     lanternas: [],
     tonfas: [],
+    smartbadges: [],
     movimentacoes: [],
     logs: [],
     alertas: [],
@@ -267,6 +268,7 @@ const Router = {
             else if (hash === 'bodycams' && typeof BodycamsModule !== 'undefined') BodycamsModule.render(contentArea);
             else if (hash === 'lanternas' && typeof LanternasModule !== 'undefined') LanternasModule.render(contentArea);
             else if (hash === 'tonfas' && typeof TonfasModule !== 'undefined') TonfasModule.render(contentArea);
+            else if (hash === 'smartbadges' && typeof SmartbadgesModule !== 'undefined') SmartbadgesModule.render(contentArea);
             else if (hash === 'postos' && typeof PostosEfetivoModule !== 'undefined') PostosEfetivoModule.render(contentArea);
             else if (hash === 'minas' && typeof MinasModule !== 'undefined') MinasModule.render(contentArea);
             else if (hash === 'movimentacoes' && typeof MovimentacoesModule !== 'undefined') MovimentacoesModule.render(contentArea);
@@ -332,6 +334,7 @@ function getAppLayout() {
             <a href="#bodycams" class="nav-item"><i class="fas fa-video"></i> Bodycams</a>
             <a href="#lanternas" class="nav-item"><i class="fas fa-flashlight"></i> Lanternas</a>
             <a href="#tonfas" class="nav-item"><i class="fas fa-gavel"></i> Tonfas</a>
+            <a href="#smartbadges" class="nav-item"><i class="fas fa-id-badge"></i> Smartbadges</a>
             <a href="#radios" class="nav-item"><i class="fas fa-walkie-talkie"></i> Rádios HT</a>
             
             <div class="nav-category">Gestão</div>
@@ -356,7 +359,7 @@ function getAppLayout() {
               </div>
               
               <div style="display: flex; align-items: center; gap: 16px;">
-                  <button class="btn btn-primary" onclick="openScannerModal()"><i class="fas fa-qrcode"></i> Ler Código</button>
+                  
                   <div style="position: relative;">
                       <button class="btn btn-secondary btn-icon"><i class="fas fa-bell"></i></button>
                       <span class="badge badge-danger" id="alert-badge-header" style="position: absolute; top: -5px; right: -5px; padding: 2px 5px; font-size: 0.6rem; border-radius: 50%;">0</span>

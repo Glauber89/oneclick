@@ -689,3 +689,152 @@ const RadiosModule = {
 };
 
 window.RadiosModule = RadiosModule;
+window.SmartbadgesModule = SmartbadgesModule;
+
+
+const SmartbadgesModule = {
+    render(container) {
+        container.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="margin: 0; color: var(--text);">Controle de Smartbadges</h2>
+                <button class="btn btn-primary" onclick="SmartbadgesModule.openForm()">
+                    <i class="fas fa-plus"></i> Novo Smartbadge
+                </button>
+            </div>
+            
+            <div class="filter-bar" style="display: flex; gap: 16px; margin-bottom: 24px;">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="smartbadges-search" placeholder="Buscar por ID..." onkeyup="SmartbadgesModule.filter()">
+                </div>
+                <select id="smartbadges-status" onchange="SmartbadgesModule.filter()" style="max-width: 200px;">
+                    <option value="">Todos os Status</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="manutenção">Manutenção</option>
+                    <option value="devolução">Devolução</option>
+                </select>
+                <button class="btn btn-secondary" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            
+            <div class="card table-container">
+                <table id="smartbadges-table">
+                    <thead>
+                        <tr>
+                            <th>ID (Código)</th>
+                            <th>Status</th>
+                            <th style="text-align: right;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>${this.getTableRows(App.data.smartbadges || [])}</tbody>
+                </table>
+            </div>
+        `;
+    },
+    
+    getTableRows(data) {
+        return data.map(item => `
+            <tr>
+                <td style="font-weight: bold; color: var(--text);">${item.codigo || item.id}</td>
+                <td>${Utils.getBadgeHtml(item.situacao)}</td>
+                <td style="text-align: right;">
+                    <div style="display: inline-flex; gap: 4px;">
+                        <button class="btn btn-icon" title="Editar" onclick="SmartbadgesModule.openForm('${item.id}')"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon" title="Excluir" onclick="SmartbadgesModule.delete('${item.id}')"><i class="fas fa-trash" style="color: var(--danger);"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `).join('') || '<tr><td colspan="3" style="text-align: center; padding: 20px;">Nenhum Smartbadge cadastrado</td></tr>';
+    },
+    
+    openForm(id = null) {
+        const item = id ? App.data.smartbadges.find(i => i.id === id) : null;
+        const modalId = 'modal-smartbadge';
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        overlay.id = modalId;
+        
+        overlay.innerHTML = `
+            <div class="modal">
+                <div class="modal-header" style="padding: 24px 32px; border-bottom: 1px solid var(--border-highlight); display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0; color: var(--text);">${id ? 'Editar' : 'Novo'} Smartbadge</h3>
+                    <button onclick="this.closest('.modal-overlay').remove()" class="btn-icon"><i class="fas fa-times"></i></button>
+                </div>
+                <form onsubmit="event.preventDefault(); SmartbadgesModule.save('${id || ''}')">
+                    <div class="modal-body" style="padding: 32px;">
+                        <div class="form-group">
+                            <label>ID / Código do Smartbadge</label>
+                            <input type="text" id="sb-codigo" value="${item?.codigo || ''}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="sb-situacao" required>
+                                <option value="">Selecione...</option>
+                                <option value="ativo" ${item?.situacao === 'ativo' ? 'selected' : ''}>Ativo</option>
+                                <option value="manutenção" ${item?.situacao === 'manutenção' ? 'selected' : ''}>Manutenção</option>
+                                <option value="devolução" ${item?.situacao === 'devolução' ? 'selected' : ''}>Devolução</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="padding: 24px 32px; border-top: 1px solid var(--border-highlight); display: flex; justify-content: flex-end; gap: 16px;">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+    },
+    
+    save(id) {
+        const codigo = document.getElementById('sb-codigo').value;
+        const situacao = document.getElementById('sb-situacao').value;
+        
+        if (!App.data.smartbadges) App.data.smartbadges = [];
+        
+        if (id) {
+            const index = App.data.smartbadges.findIndex(i => i.id === id);
+            if(index > -1) {
+                App.data.smartbadges[index] = { ...App.data.smartbadges[index], codigo, situacao };
+            }
+        } else {
+            App.data.smartbadges.push({
+                id: Utils.generateId('SB'),
+                codigo,
+                situacao
+            });
+        }
+        
+        Storage.saveAll();
+        document.getElementById('modal-smartbadge').remove();
+        this.render(document.getElementById('main-content-area'));
+        Utils.showToast('Smartbadge salvo com sucesso!');
+    },
+    
+    async delete(id) {
+        if(await Utils.confirm('Tem certeza que deseja excluir este Smartbadge?')) {
+            const index = App.data.smartbadges.findIndex(i => i.id === id);
+            if(index > -1) {
+                App.data.smartbadges.splice(index, 1);
+                Storage.saveAll();
+                this.render(document.getElementById('main-content-area'));
+                Utils.showToast('Smartbadge excluído!');
+            }
+        }
+    },
+    
+    filter() {
+        const termo = document.getElementById('smartbadges-search').value.toLowerCase();
+        const status = document.getElementById('smartbadges-status').value;
+        
+        const filtrados = (App.data.smartbadges || []).filter(item => {
+            const matchTermo = (item.codigo || '').toLowerCase().includes(termo);
+            const matchStatus = status === '' || item.situacao === status;
+            return matchTermo && matchStatus;
+        });
+        
+        document.querySelector('#smartbadges-table tbody').innerHTML = this.getTableRows(filtrados);
+    }
+};
+window.SmartbadgesModule = SmartbadgesModule;
