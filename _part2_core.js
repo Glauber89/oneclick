@@ -480,3 +480,18 @@ window.Storage = Storage;
 window.App = App;
 window.openScannerModal = openScannerModal;
 window.toggleSidebar = toggleSidebar;
+
+
+function updateAlertBadge() {
+    const headerBadge = document.getElementById('alert-badge-header');
+    const menuBadge = document.getElementById('alert-badge-menu');
+    const count = App.data.alertas ? App.data.alertas.length : 0;
+    
+    if(count > 0) {
+        if(headerBadge) { headerBadge.style.display = 'flex'; headerBadge.textContent = count; }
+        if(menuBadge) { menuBadge.style.display = 'flex'; menuBadge.textContent = count; }
+    } else {
+        if(headerBadge) headerBadge.style.display = 'none';
+        if(menuBadge) menuBadge.style.display = 'none';
+    }
+}
