@@ -459,3 +459,8 @@ select {
 .nav-item.active { color: #ffffff !important; }
 
 .toast { color: #1e293b !important; font-weight: 600 !important; }
+
+
+.table-container { width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; border-radius: 8px !important; }
+
+th, td { white-space: nowrap !important; }
