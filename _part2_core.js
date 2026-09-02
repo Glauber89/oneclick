@@ -118,8 +118,29 @@ const Storage = {
     if (['extraviada', 'bloqueada', 'baixada', 'inoperante', 'extraviado', 'baixado'].includes(situacao)) badgeClass = 'badge-danger';
     return `<span class="badge ${badgeClass}">${situacao.toUpperCase()}</span>`;
   },
-  confirm(message) {
-      return confirm(message); // Simplificado por enquanto.
+  confirm(msg) {
+    return new Promise((resolve) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        overlay.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.2s ease;';
+        overlay.innerHTML = `
+          <div class="modal" style="background: white; border-radius: 16px; width: 100%; max-width: 400px; padding: 30px 24px; text-align: center; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: #fee2e2; color: #ef4444; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px;">
+              <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3 style="margin: 0 0 12px; color: #1e293b; font-size: 1.25rem;">Confirmar Exclusão</h3>
+            <p style="margin: 0 0 24px; color: #64748b; font-size: 0.95rem; line-height: 1.5;">${msg}</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button id="btn-cancel" style="flex: 1; padding: 12px; background: #f1f5f9; color: #475569; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;">Cancelar</button>
+              <button id="btn-confirm" style="flex: 1; padding: 12px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;">Sim, Excluir</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+
+        document.getElementById('btn-cancel').onclick = () => { overlay.remove(); resolve(false); };
+        document.getElementById('btn-confirm').onclick = () => { overlay.remove(); resolve(true); };
+    });
   }
 };
 

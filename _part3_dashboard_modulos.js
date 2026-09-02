@@ -273,8 +273,8 @@ const ArmasModule = {
     Utils.showToast('Arma salva com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const index = App.data.armas.findIndex(a => a.id === id);
           App.data.armas.splice(index, 1);
           Storage.saveAll();
@@ -381,8 +381,8 @@ const CelularesModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'celulares';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
@@ -491,8 +491,8 @@ const ColetesModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'coletes';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);

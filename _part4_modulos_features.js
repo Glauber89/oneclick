@@ -99,8 +99,8 @@ const VeiculosModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'veiculos';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
@@ -204,8 +204,8 @@ const BodycamsModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'bodycams';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
@@ -309,8 +309,8 @@ const LanternasModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'lanternas';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
@@ -414,8 +414,8 @@ const TonfasModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'tonfas';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
@@ -675,8 +675,8 @@ const RadiosModule = {
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
   },
-  delete(id) {
-      if(Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
+  async delete(id) {
+      if(await Utils.confirm('Tem certeza que deseja excluir este item permanentemente?')) {
           const arrayName = 'radios';
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
