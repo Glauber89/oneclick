@@ -11,7 +11,41 @@ const Dashboard = {
       </div>
 
       <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px;">
-        
+        <div class="card stat-card">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="stat-icon" style="background: rgba(37,99,235,0.1); color: var(--secondary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700;">${totalMateriais}</div>
+              <div style="color: var(--text-secondary); font-size: 0.875rem;">Total Materiais</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: var(--success); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700;">${emUso}</div>
+              <div style="color: var(--text-secondary); font-size: 0.875rem;">Em Uso</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              <i class="fas fa-tools"></i>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700;">${manutencao}</div>
+              <div style="color: var(--text-secondary); font-size: 0.875rem;">Em Manutenção</div>
+            </div>
+          </div>
+        </div>
       </div>
       
       <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
