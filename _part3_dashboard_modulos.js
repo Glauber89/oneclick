@@ -109,7 +109,10 @@ const ArmasModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Armas</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Armas</h2>
+          </div>
         <button class="btn btn-primary" onclick="ArmasModule.openForm()"><i class="fas fa-plus"></i> Nova Arma</button>
       </div>
       <div class="card">
@@ -289,7 +292,10 @@ const CelularesModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Celulares</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Celulares</h2>
+          </div>
         <button class="btn btn-primary" onclick="CelularesModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -398,7 +404,10 @@ const ColetesModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Coletes</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Coletes</h2>
+          </div>
         <button class="btn btn-primary" onclick="ColetesModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -508,7 +517,10 @@ const MinasModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Minas e Equipes</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Minas e Equipes</h2>
+          </div>
       </div>
       <div class="card">
         <div class="empty-state" style="text-align: center; padding: 40px; color: #64748b;">

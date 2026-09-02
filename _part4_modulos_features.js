@@ -2,7 +2,10 @@ const VeiculosModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Veículos</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Veículos</h2>
+          </div>
         <button class="btn btn-primary" onclick="VeiculosModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -116,7 +119,10 @@ const BodycamsModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Bodycams</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Bodycams</h2>
+          </div>
         <button class="btn btn-primary" onclick="BodycamsModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -221,7 +227,10 @@ const LanternasModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Lanternas</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Lanternas</h2>
+          </div>
         <button class="btn btn-primary" onclick="LanternasModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -326,7 +335,10 @@ const TonfasModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Tonfas</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Tonfas</h2>
+          </div>
         <button class="btn btn-primary" onclick="TonfasModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -449,7 +461,10 @@ const PostosEfetivoModule = {
 
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Postos e Efetivo</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Postos e Efetivo</h2>
+          </div>
       </div>
       <div class="card">
         <div class="table-container">
@@ -478,7 +493,10 @@ const MovimentacoesModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Movimentações</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Movimentações</h2>
+          </div>
         <button class="btn btn-primary"><i class="fas fa-exchange-alt"></i> Nova Movimentação</button>
       </div>
       <div class="card">
@@ -495,7 +513,10 @@ const RelatoriosModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Relatórios</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Relatórios</h2>
+          </div>
       </div>
       <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
         ${['Inventário Geral', 'Materiais Vencidos', 'Histórico de Movimentações', 'Efetivo Previsto vs Real'].map(r => `
@@ -540,7 +561,10 @@ const UsuariosModule = {
     }
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Usuários do Sistema</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Usuários do Sistema</h2>
+          </div>
       </div>
       <div class="card">
         <div class="table-container">
@@ -585,7 +609,10 @@ const RadiosModule = {
   render(container) {
     container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; color: var(--primary);">Controle de Rádios HT</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--primary);">Controle de Rádios HT</h2>
+          </div>
         <button class="btn btn-primary" onclick="RadiosModule.openForm()"><i class="fas fa-plus"></i> Novo Item</button>
       </div>
       <div class="card">
@@ -695,7 +722,10 @@ const SmartbadgesModule = {
     render(container) {
         container.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <h2 style="margin: 0; color: var(--text);">Controle de Smartbadges</h2>
+                <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="#dashboard" class="btn btn-icon" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);" title="Voltar ao Painel Principal"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--text);">Controle de Smartbadges</h2>
+          </div>
                 <button class="btn btn-primary" onclick="SmartbadgesModule.openForm()">
                     <i class="fas fa-plus"></i> Novo Smartbadge
                 </button>
