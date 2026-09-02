@@ -97,7 +97,7 @@ const VeiculosModule = {
         AuditLog.registrar('CADASTRO', 'VEI', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -108,7 +108,7 @@ const VeiculosModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -205,7 +205,7 @@ const BodycamsModule = {
         AuditLog.registrar('CADASTRO', 'CAM', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -216,7 +216,7 @@ const BodycamsModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -313,7 +313,7 @@ const LanternasModule = {
         AuditLog.registrar('CADASTRO', 'LAN', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -324,7 +324,7 @@ const LanternasModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -421,7 +421,7 @@ const TonfasModule = {
         AuditLog.registrar('CADASTRO', 'TON', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -432,7 +432,7 @@ const TonfasModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -697,7 +697,7 @@ const RadiosModule = {
         AuditLog.registrar('CADASTRO', 'RAD', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -708,7 +708,7 @@ const RadiosModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -848,7 +848,7 @@ const SmartbadgesModule = {
                 App.data.smartbadges.splice(index, 1);
                 Storage.saveAll();
                 this.render(document.getElementById('main-content-area'));
-                Utils.showToast('Smartbadge excluído!');
+                Utils.showToast('Smartbadge removido!');
             }
         }
     },

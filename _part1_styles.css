@@ -457,3 +457,5 @@ select {
 .nav-item i { color: #ffffff !important; }
 .nav-item { color: rgba(255, 255, 255, 0.7) !important; } /* Texto um pouco mais claro para combinar */
 .nav-item.active { color: #ffffff !important; }
+
+.toast { color: #1e293b !important; font-weight: 600 !important; }

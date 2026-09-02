@@ -198,45 +198,7 @@ const AuditLog = {
   }
 };
 
-const AlertEngine = {
-  verificar() {
-    App.data.alertas = [];
-    
-    // Armas (Validade Registro)
-    App.data.armas.forEach(arma => {
-      if (arma.situacao !== 'baixada') {
-        const dias = Utils.daysDiff(arma.validadeRegistro);
-        if (dias < 0) {
-          this.addAlert('Arma', arma.id, `Registro vencido (${arma.codigo})`, 'crítico');
-        } else if (dias <= 30) {
-          this.addAlert('Arma', arma.id, `Registro vence em ${dias} dias (${arma.codigo})`, 'atenção');
-        }
-      }
-    });
 
-    // Coletes (Validade)
-    App.data.coletes.forEach(colete => {
-       if (colete.situacao !== 'baixada' && colete.situacao !== 'baixado') {
-         const dias = Utils.daysDiff(colete.validade);
-         if(dias < 0) this.addAlert('Colete', colete.id, `Colete vencido (${colete.codigo})`, 'crítico');
-         else if (dias <= 60) this.addAlert('Colete', colete.id, `Colete vence em ${dias} dias (${colete.codigo})`, 'atenção');
-       }
-    });
-
-    Storage.save('alertas', App.data.alertas);
-    updateAlertBadge();
-  },
-  addAlert(entidade, idEntidade, mensagem, prioridade) {
-    App.data.alertas.push({
-      id: Utils.generateId('ALT'),
-      dataGeracao: new Date().toISOString(),
-      entidade,
-      idEntidade,
-      mensagem,
-      prioridade
-    });
-  }
-};
 
 const Router = {
   init() {
@@ -274,7 +236,7 @@ const Router = {
             else if (hash === 'movimentacoes' && typeof MovimentacoesModule !== 'undefined') MovimentacoesModule.render(contentArea);
             else if (hash === 'relatorios' && typeof RelatoriosModule !== 'undefined') RelatoriosModule.render(contentArea);
             else if (hash === 'radios' && typeof RadiosModule !== 'undefined') RadiosModule.render(contentArea);
-            else if (hash === 'alertas' && typeof AlertasModule !== 'undefined') AlertasModule.render(contentArea);
+            
             else if (hash === 'usuarios' && typeof UsuariosModule !== 'undefined') UsuariosModule.render(contentArea);
             else contentArea.innerHTML = '<div class="empty-state"><i class="fas fa-tools empty-state-icon"></i><h3 class="empty-state-title">Módulo em desenvolvimento</h3><p class="empty-state-description">Este módulo será disponibilizado em breve.</p></div>';
         } catch (e) {
@@ -324,7 +286,7 @@ function getAppLayout() {
           <nav class="nav-menu">
             <div class="nav-category">Painel</div>
             <a href="#dashboard" class="nav-item active"><i class="fas fa-chart-line"></i> Dashboard</a>
-            <a href="#alertas" class="nav-item"><i class="fas fa-bell"></i> Alertas <span class="badge badge-danger" id="alert-badge-menu" style="margin-left: auto;">0</span></a>
+            
             
             <div class="nav-category">Controle de Materiais</div>
             <a href="#armas" class="nav-item"><i class="fas fa-crosshairs"></i> Armas</a>
@@ -464,7 +426,7 @@ function getAppLayout() {
 function renderApp() {
   document.getElementById('app').innerHTML = getAppLayout();
   Router.init();
-  if (typeof AlertEngine !== 'undefined') AlertEngine.verificar();
+  
 }
 
 function renderLogin() {
@@ -482,16 +444,4 @@ window.openScannerModal = openScannerModal;
 window.toggleSidebar = toggleSidebar;
 
 
-function updateAlertBadge() {
-    const headerBadge = document.getElementById('alert-badge-header');
-    const menuBadge = document.getElementById('alert-badge-menu');
-    const count = App.data.alertas ? App.data.alertas.length : 0;
-    
-    if(count > 0) {
-        if(headerBadge) { headerBadge.style.display = 'flex'; headerBadge.textContent = count; }
-        if(menuBadge) { menuBadge.style.display = 'flex'; menuBadge.textContent = count; }
-    } else {
-        if(headerBadge) headerBadge.style.display = 'none';
-        if(menuBadge) menuBadge.style.display = 'none';
-    }
-}
+

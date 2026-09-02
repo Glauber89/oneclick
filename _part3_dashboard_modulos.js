@@ -11,56 +11,10 @@ const Dashboard = {
       </div>
 
       <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px;">
-        <div class="card stat-card">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="stat-icon" style="background: rgba(37,99,235,0.1); color: var(--secondary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-              <i class="fas fa-boxes"></i>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 700;">${totalMateriais}</div>
-              <div style="color: var(--text-secondary); font-size: 0.875rem;">Total Materiais</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card stat-card">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: var(--success); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-              <i class="fas fa-check-circle"></i>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 700;">${emUso}</div>
-              <div style="color: var(--text-secondary); font-size: 0.875rem;">Em Uso</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card stat-card">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-              <i class="fas fa-tools"></i>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 700;">${manutencao}</div>
-              <div style="color: var(--text-secondary); font-size: 0.875rem;">Em Manutenção</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card stat-card">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="stat-icon" style="background: rgba(239,68,68,0.1); color: var(--danger); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 700;">${App.data.alertas.length}</div>
-              <div style="color: var(--text-secondary); font-size: 0.875rem;">Alertas Críticos</div>
-            </div>
-          </div>
-        </div>
+        
       </div>
       
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
           <div class="card">
               <h3 style="margin-top: 0;">Últimas Movimentações</h3>
               <div class="table-container">
@@ -86,20 +40,7 @@ const Dashboard = {
                   </table>
               </div>
           </div>
-          <div class="card">
-              <h3 style="margin-top: 0;">Alertas Recentes</h3>
-              <ul style="list-style: none; padding: 0; margin: 0;">
-                  ${App.data.alertas.slice(0, 5).map(alerta => `
-                      <li style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 12px;">
-                          <div style="width: 8px; height: 8px; border-radius: 50%; background: ${alerta.prioridade === 'crítico' ? 'var(--danger)' : 'var(--warning)'};"></div>
-                          <div>
-                              <div style="font-weight: bold; font-size: 0.9rem;">${alerta.entidade}</div>
-                              <div style="color: var(--text-secondary); font-size: 0.8rem;">${alerta.mensagem}</div>
-                          </div>
-                      </li>
-                  `).join('') || '<li style="padding: 12px 0; text-align: center; color: var(--text-secondary);">Nenhum alerta</li>'}
-              </ul>
-          </div>
+          
       </div>
     `;
   }
@@ -271,7 +212,7 @@ const ArmasModule = {
     }
 
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Arma salva com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -281,7 +222,7 @@ const ArmasModule = {
           const index = App.data.armas.findIndex(a => a.id === id);
           App.data.armas.splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Arma exclu�da com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -382,7 +323,7 @@ const CelularesModule = {
         AuditLog.registrar('CADASTRO', 'CEL', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -393,7 +334,7 @@ const CelularesModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
@@ -495,7 +436,7 @@ const ColetesModule = {
         AuditLog.registrar('CADASTRO', 'COL', nova.id, null, nova);
     }
     Storage.saveAll();
-    AlertEngine.verificar();
+    
     document.querySelector('.modal-overlay').remove();
     Utils.showToast('Item salvo com sucesso!');
     this.render(document.getElementById('main-content-area'));
@@ -506,7 +447,7 @@ const ColetesModule = {
           const index = App.data[arrayName].findIndex(i => i.id === id);
           App.data[arrayName].splice(index, 1);
           Storage.saveAll();
-          AlertEngine.verificar();
+          
           Utils.showToast('Item exclu�do com sucesso.');
           this.render(document.getElementById('main-content-area'));
       }
