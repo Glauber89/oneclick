@@ -689,7 +689,6 @@ const RadiosModule = {
 };
 
 window.RadiosModule = RadiosModule;
-window.SmartbadgesModule = SmartbadgesModule;
 
 
 const SmartbadgesModule = {
@@ -837,4 +836,5 @@ const SmartbadgesModule = {
         document.querySelector('#smartbadges-table tbody').innerHTML = this.getTableRows(filtrados);
     }
 };
+
 window.SmartbadgesModule = SmartbadgesModule;
