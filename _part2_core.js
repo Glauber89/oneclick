@@ -312,176 +312,108 @@ function seedData() {
 }
 
 function getAppLayout() {
-  return `
-    <div class="app-layout">
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-logo">
-            <div style="color: white; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
-                <span>ONE<span style="color: var(--accent)">CLICK</span></span>
-            </div>
-        </div>
-        <nav class="sidebar-nav" style="padding: 10px;">
-          <div style="font-size: 0.65rem; color: var(--accent); text-transform: uppercase; padding: 10px; font-weight: bold;">Painel</div>
-          <a href="#dashboard" class="nav-item active" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-chart-line"></i> Dashboard</a>
-          <a href="#alertas" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-bell"></i> Alertas <span class="nav-badge" id="alert-badge-menu" style="background: var(--danger); border-radius: 10px; padding: 2px 6px; font-size: 0.7rem; margin-left: auto;">0</span></a>
-          
-          <div style="font-size: 0.65rem; color: var(--accent); text-transform: uppercase; padding: 10px; font-weight: bold; margin-top: 10px;">Controle de Materiais</div>
-          <a href="#armas" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-crosshairs"></i> Armas</a>
-          <a href="#coletes" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-vest"></i> Coletes e Placas</a>
-          <a href="#celulares" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-mobile-alt"></i> Celulares</a>
-          <a href="#veiculos" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-car"></i> Veículos</a>
-          <a href="#bodycams" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-video"></i> Bodycams</a>
-          <a href="#lanternas" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-flashlight"></i> Lanternas</a>
-          <a href="#tonfas" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-gavel"></i> Tonfas</a>
-          
-          <a href="#radios" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-walkie-talkie"></i> Rádios HT</a>
-          <div style="font-size: 0.65rem; color: var(--accent); text-transform: uppercase; padding: 10px; font-weight: bold; margin-top: 10px;">Gestão</div>
-          <a href="#postos" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-map-marker-alt"></i> Postos e Efetivo</a>
-          <a href="#minas" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-mountain"></i> Minas e Equipes</a>
-          <a href="#movimentacoes" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-exchange-alt"></i> Movimentações</a>
-          <a href="#relatorios" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-file-pdf"></i> Relatórios</a>
-          
-          <div style="font-size: 0.65rem; color: var(--accent); text-transform: uppercase; padding: 10px; font-weight: bold; margin-top: 10px;">Sistema</div>
-          <a href="#usuarios" class="nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 8px;"><i class="fas fa-users-cog"></i> Usuários</a>
-        </nav>
-      </aside>
-      
-      <main class="main-content" style="flex: 1; margin-left: 260px; background: #f1f5f9; min-height: 100vh; overflow-y: auto;">
-        <header class="page-header" style="height: 64px; background: white; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 10;">
-            <div style="display: flex; align-items: center; gap: 16px;">
-                <button class="btn btn-icon d-none" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-                <div class="search-bar" style="display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 12px;">
-                    <i class="fas fa-search" style="color: #64748b;"></i>
-                    <input type="text" placeholder="Busca global..." style="border: none; background: transparent; outline: none; width: 200px;">
-                </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 16px;">
-                <button class="btn btn-primary" onclick="openScannerModal()" style="display: flex; align-items: center; gap: 6px;"><i class="fas fa-qrcode"></i> Ler Código</button>
-                <div style="position: relative;">
-                    <button class="btn btn-icon" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #64748b;"><i class="fas fa-bell"></i></button>
-                    <span class="badge badge-danger" id="alert-badge-header" style="position: absolute; top: -5px; right: -5px; padding: 2px 5px; font-size: 0.6rem; border-radius: 50%;">0</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px; border-left: 1px solid #e2e8f0; padding-left: 16px;">
-                    <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                        ${App.currentUser?.nome.charAt(0)}
-                    </div>
-                    <div>
-                        <div style="font-size: 0.8rem; font-weight: bold;">${App.currentUser?.nome}</div>
-                        <div style="font-size: 0.7rem; color: #64748b;">${App.currentUser?.perfil}</div>
-                    </div>
-                    <button class="btn btn-icon" onclick="Auth.logout()" title="Sair" style="background: none; border: none; color: var(--danger); cursor: pointer;"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
-            </div>
-        </header>
-        
-        <div id="main-content-area" style="padding: 24px;">
-            <!-- Conteúdo carregado via Router -->
-        </div>
-      </main>
-    </div>
-    
-    <!-- Modal Container -->
-    <div id="modal-container"></div>
-  `;
-}
-
-function getLoginLayout() {
-  return `
-    <div class="login-page" style="min-height: 100vh; display: flex; background: linear-gradient(135deg, var(--primary) 0%, #0f1f3d 100%); align-items: center; justify-content: center;">
-      <div class="login-container" style="max-width: 440px; width: 100%; padding: 20px;">
-        <div class="login-card" style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
-          <div style="text-align: center; margin-bottom: 30px;">
-            <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--accent); margin-bottom: 10px;"></i>
-            <h1 style="color: var(--primary); font-size: 1.5rem; margin: 0;">Controle de Materiais</h1>
-            <h2 style="color: var(--accent); font-size: 2rem; font-weight: 800; margin: 0;">ONE<span style="color: var(--primary)">CLICK</span></h2>
+    return `
+      <div class="app-layout">
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-header">
+              <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
+              <h2>ONE<span style="color: var(--accent)">CLICK</span></h2>
           </div>
+          <nav class="nav-menu">
+            <div class="nav-category">Painel</div>
+            <a href="#dashboard" class="nav-item active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="#alertas" class="nav-item"><i class="fas fa-bell"></i> Alertas <span class="badge badge-danger" id="alert-badge-menu" style="margin-left: auto;">0</span></a>
+            
+            <div class="nav-category">Controle de Materiais</div>
+            <a href="#armas" class="nav-item"><i class="fas fa-crosshairs"></i> Armas</a>
+            <a href="#coletes" class="nav-item"><i class="fas fa-vest"></i> Coletes e Placas</a>
+            <a href="#celulares" class="nav-item"><i class="fas fa-mobile-alt"></i> Celulares</a>
+            <a href="#veiculos" class="nav-item"><i class="fas fa-car"></i> Veículos</a>
+            <a href="#bodycams" class="nav-item"><i class="fas fa-video"></i> Bodycams</a>
+            <a href="#lanternas" class="nav-item"><i class="fas fa-flashlight"></i> Lanternas</a>
+            <a href="#tonfas" class="nav-item"><i class="fas fa-gavel"></i> Tonfas</a>
+            <a href="#radios" class="nav-item"><i class="fas fa-walkie-talkie"></i> Rádios HT</a>
+            
+            <div class="nav-category">Gestão</div>
+            <a href="#postos" class="nav-item"><i class="fas fa-map-marker-alt"></i> Postos e Efetivo</a>
+            <a href="#minas" class="nav-item"><i class="fas fa-mountain"></i> Minas e Equipes</a>
+            <a href="#movimentacoes" class="nav-item"><i class="fas fa-exchange-alt"></i> Movimentações</a>
+            <a href="#relatorios" class="nav-item"><i class="fas fa-file-pdf"></i> Relatórios</a>
+            
+            <div class="nav-category">Sistema</div>
+            <a href="#usuarios" class="nav-item"><i class="fas fa-users-cog"></i> Usuários</a>
+          </nav>
+        </aside>
+        
+        <main class="main-content">
+          <header class="page-header">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                  <button class="btn btn-icon d-none" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+                  <div class="search-bar">
+                      <i class="fas fa-search"></i>
+                      <input type="text" placeholder="Busca global...">
+                  </div>
+              </div>
+              
+              <div style="display: flex; align-items: center; gap: 16px;">
+                  <button class="btn btn-primary" onclick="openScannerModal()"><i class="fas fa-qrcode"></i> Ler Código</button>
+                  <div style="position: relative;">
+                      <button class="btn btn-secondary btn-icon"><i class="fas fa-bell"></i></button>
+                      <span class="badge badge-danger" id="alert-badge-header" style="position: absolute; top: -5px; right: -5px; padding: 2px 5px; font-size: 0.6rem; border-radius: 50%;">0</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; padding-left: 16px;">
+                      <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                          ${App.currentUser?.nome.charAt(0)}
+                      </div>
+                      <div>
+                          <div style="font-size: 0.85rem; font-weight: 700; color: var(--text);">${App.currentUser?.nome}</div>
+                          <div style="font-size: 0.75rem; color: var(--text-secondary);">${App.currentUser?.perfil}</div>
+                      </div>
+                      <button class="btn btn-icon" onclick="Auth.logout()" style="margin-left: 12px; color: var(--danger); background: transparent;"><i class="fas fa-sign-out-alt"></i></button>
+                  </div>
+              </div>
+          </header>
           
-          <form onsubmit="event.preventDefault(); Auth.login(document.getElementById('username').value, document.getElementById('password').value);">
-            <div class="form-group" style="margin-bottom: 16px;">
-              <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 6px;">Usuário</label>
-              <input type="text" id="username" value="admin" style="width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px;" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 24px;">
-              <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 6px;">Senha</label>
-              <input type="password" id="password" value="123" style="width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px;" required>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem; border-radius: 8px; border: none; background: var(--secondary); color: white; cursor: pointer; display: flex; justify-content: center; gap: 10px;">
-              <i class="fas fa-sign-in-alt"></i> Entrar no Sistema
-            </button>
-          </form>
-        </div>
+          <div class="page-content" id="main-content-area">
+             <!-- Renderizado dinamicamente -->
+          </div>
+        </main>
       </div>
-    </div>
-  `;
-}
-
-function updateAlertBadge() {
-    const count = App.data.alertas.length;
-    const badgeMenu = document.getElementById('alert-badge-menu');
-    const badgeHeader = document.getElementById('alert-badge-header');
-    
-    if (badgeMenu) {
-        badgeMenu.innerText = count;
-        badgeMenu.style.display = count > 0 ? 'inline-block' : 'none';
-    }
-    if (badgeHeader) {
-        badgeHeader.innerText = count;
-        badgeHeader.style.display = count > 0 ? 'inline-block' : 'none';
-    }
-}
-
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    if(sidebar) sidebar.classList.toggle('open');
-}
-
-function openScannerModal() {
-    Utils.showToast("Leitor de QR Code / Código de barras acionado (Simulação)", "info");
-}
-
-function initApp() {
-    // Escuta mudanças no Firebase em tempo real
-    db.collection('oneclick').doc('basededados').onSnapshot((doc) => {
-        if (doc.exists) {
-            App.data = doc.data();
-            console.log("Sincronizado com a nuvem!");
-            if (App.currentUser && document.getElementById('main-content-area')) {
-                Router.navigate(App.currentPage);
-            }
-        } else {
-            console.log("Banco de dados vazio. Gerando dados iniciais...");
-            seedData();
-            App.data.minas = [
-                { id: 'MINA-CAUE', nome: 'Mina Cauê', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
-                { id: 'MINA-CONCEICAO', nome: 'Mina Conceição', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' },
-                { id: 'MINA-PERIQUITO', nome: 'Mina Periquito', unidade: 'Itabira', responsavel: '-', situacao: 'ativa' }
-            ];
-            Storage.saveAll();
-        }
-    });
-
-    const savedUser = localStorage.getItem('oneclick_current_user');
-    if (savedUser) {
-      App.currentUser = JSON.parse(savedUser);
-      renderApp();
-    } else {
-      renderLogin();
-    }
+    `;
   }
   
-  function renderApp() {
-  document.getElementById('app').innerHTML = getAppLayout();
-  Router.init();
-  AlertEngine.verificar();
-}
-
-function renderLogin() {
-  document.getElementById('app').innerHTML = getLoginLayout();
-}
-
-// Expose globally
+  function getLoginLayout() {
+    return `
+      <div class="login-page">
+        <div class="login-container">
+          <div class="login-card">
+            <div style="text-align: center; margin-bottom: 40px;">
+              <i class="fas fa-shield-alt" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 16px;"></i>
+              <h1 style="color: var(--text); font-size: 1.5rem; margin: 0; font-weight: 700;">Controle de Materiais</h1>
+              <h2 style="color: var(--secondary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px;">ONE<span style="color: var(--accent)">CLICK</span></h2>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); Auth.login(document.getElementById('username').value, document.getElementById('password').value);">
+              <div class="form-group">
+                <label>Usuário</label>
+                <input type="text" id="username" value="admin" required>
+              </div>
+              <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="password" value="123456" required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px; padding: 14px;">Entrar no Sistema</button>
+            </form>
+            <div style="text-align: center; margin-top: 24px; font-size: 0.8rem; color: var(--text-secondary);">
+              V 1.0.0 &copy; ONECLICK
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Expose globally
 window.initApp = initApp;
 window.Auth = Auth;
 window.Utils = Utils;
